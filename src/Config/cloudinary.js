@@ -24,20 +24,6 @@ export const uploadToCloudinary = (fileBuffer, folder) => {
     });
   };
   
-  const extractPublicId = (url) => {
-    const parts = url.split("/");
-  
-    const versionIndex = parts.findIndex((part) => part.startsWith("v"));
-  
-    if (versionIndex === -1 || versionIndex + 1 >= parts.length) {
-      throw new Error("Invalid Cloudinary URL. Cannot extract public_id.");
-    }
-  
-    const publicIdWithExtension = parts.slice(versionIndex + 1).join("/");
-  
-    return publicIdWithExtension.split(".").slice(0, -1).join(".");
-  };
-  
   export const deleteFromCloudinary = async (imageUrl) => {
     try {
       const publicId = extractPublicId(imageUrl);

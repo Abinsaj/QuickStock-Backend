@@ -52,6 +52,9 @@ export class ProductService{
       async deleteProduct(id){
         try {
             const result = await productRepository.findProductAndDelete(id)
+            if(result.image_url){
+                await deleteFromCloudinary(result.image_url)
+            }
             return result
         } catch (error) {
             throw error

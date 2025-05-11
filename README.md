@@ -10,6 +10,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing pr
 - Modular architecture (controllers, services, repositories)
 - Environment-based config handling
 - Basic validation and error handling
+- Cloudinary (for image hosting)
 
 ## 📦 Installation
 
@@ -29,6 +30,30 @@ CLIENT_URL=http://localhost:5173
 
 # Start the server
 npm run dev
+
+## Cloudinary Setup
+
+Under the .env section, add the following:
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+## Cloudinary Integration
+
+Product images are uploaded to Cloudinary instead of being stored locally.
+
+Cloudinary is configured using the following environment variables:
+- `CLOUDINARY_CLOUD_NAME`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+
+Uploads are handled in the backend via the Cloudinary SDK and Multer middleware.
+
+# Cloudinary FolderStructure
+/backend
+    /src
+        /config
+            |____ cloudinary.js
 
 ## 📤 API Overview
 
