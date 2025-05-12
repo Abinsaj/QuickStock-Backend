@@ -24,21 +24,29 @@ export const uploadToCloudinary = (fileBuffer, folder) => {
     });
   };
   
+  const extractPublicId = (url) => {
+    const parts = url.split("/");
+  
+    const versionIndex = parts.findIndex((part) => part.startsWith("v"));
+    if (versionIndex === -1 || versionIndex + 1 >= parts.length) {
+      throw new Error("Invalid Cloudinary URL. Cannot extract public_id.");
+    }
+    const publicIdWithExtension = parts.slice(versionIndex + 1).join("/");
+  
+    return publicIdWithExtension.split(".").slice(0, -1).join(".");
+  };
+  
   export const deleteFromCloudinary = async (imageUrl) => {
     try {
       const publicId = extractPublicId(imageUrl);
-  
       if (!publicId) {
         throw new Error("Invalid image URL. Cannot extract public_id.");
       }
-  
       const result = await cloudinary.uploader.destroy(publicId);
   
       if (result.result === "ok") {
-        console.log("Image deleted successfully");
         return { success: true, message: "Image deleted successfully" };
       } else {
-        console.warn("Image not found or already deleted:", result.result);
         return { success: false, message: "Image not found or already deleted" };
       }
     } catch (error) {
