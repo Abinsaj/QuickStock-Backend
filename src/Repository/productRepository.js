@@ -89,7 +89,7 @@ export class ProductRepository {
             
 
             if (!updatedProduct) {
-              throw new AppError(HTTP_statusCode.NOT_FOUND, "Product not found");
+              throw new AppError(404, "Product not found");
             }
       
             return updatedProduct;

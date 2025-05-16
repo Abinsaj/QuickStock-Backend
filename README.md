@@ -78,7 +78,6 @@ Images are uploaded as multipart/form-data using multer
     /routes              
     /models              
     /middleware          
-    /config              
-    /enums               
+    /config                          
     /repository          
     /service 

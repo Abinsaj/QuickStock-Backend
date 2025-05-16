@@ -1,5 +1,4 @@
 import { uploadToCloudinary } from "../Config/cloudinary.js";
-import HTTP_statusCode from "../Enums/HTTP_statusCode.js";
 import { ProductService } from "../Services/productService.js";
 
 const productService = new ProductService()
@@ -27,7 +26,7 @@ export class ProductController {
                 category,
                 productImageUrl
             })
-            res.status(HTTP_statusCode.created).json({ message: "Product created successfully", data: product });
+            res.status(201).json({ message: "Product created successfully", data: product });
 
         } catch (error) {
             next(error)
@@ -45,7 +44,7 @@ export class ProductController {
                 limit
             })
 
-            res.status(HTTP_statusCode.OK).json({success: true, products, total})
+            res.status(200).json({success: true, products, total})
         } catch (error) {
             next(error)
         }
@@ -55,7 +54,7 @@ export class ProductController {
         try {
             const id = req.params.id
             const product = await productService.getProduct(id)
-            res.status(HTTP_statusCode.OK).json({success:true, product})
+            res.status(200).json({success:true, product})
         } catch (error) {
             next(error)
         }
@@ -85,7 +84,7 @@ export class ProductController {
                 productImageUrl
             })
 
-            res.status(HTTP_statusCode.OK).json({message:'Product updated succesfuly',products:updatedProduct})
+            res.status(200).json({message:'Product updated succesfuly',products:updatedProduct})
         } catch (error) {
             next(error)
         }
@@ -95,7 +94,7 @@ export class ProductController {
         try {
             const {id} = req.params
             const result = await productService.deleteProduct(id)
-            res.status(HTTP_statusCode.OK).json({success: true,message: 'Product deleted successfully',result})
+            res.status(200).json({success: true,message: 'Product deleted successfully',result})
         } catch (error) {
             next(error)
         }

@@ -36,7 +36,7 @@ export class ProductService{
       
           const existingProduct = await productRepository.getSingleProduct(id);
           if (!existingProduct) {
-            throw new AppError(HTTP_statusCode.NOT_FOUND, 'Product not found');
+            throw new AppError(404, 'Product not found');
           }
       
           if (existingProduct.image_url && productImageUrl) {

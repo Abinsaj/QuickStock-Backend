@@ -50,7 +50,6 @@ export const uploadToCloudinary = (fileBuffer, folder) => {
         return { success: false, message: "Image not found or already deleted" };
       }
     } catch (error) {
-      console.error("Delete Image Error:", error);
       return {
         success: false,
         message: `Failed to delete image: ${error.message}`,
